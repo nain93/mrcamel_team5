@@ -7,6 +7,12 @@ const Container = styled.div`
   height: calc(100vh - 57px);
 `;
 
+const mockBrandList = [
+  '나이키',
+  '스톤아일랜드',
+  '구찌',
+  '루이비통'
+]
 
 const mockList = [
   { title: '나이키 x 스투시 빅로고 커스텀 스우시 에센셜 후디 후드티 올드스쿨', brand: '나이키', price: 45000, id: 83, date: '20210730202942'},
@@ -38,7 +44,7 @@ export default class RecentList extends Component {
   render() {
     return (
       <Container>
-        <RecentProductList list ={this.state.resentList} ignoreList={this.state.ignoreList} />
+        <RecentProductList productList ={this.state.resentList} ignoreList={this.state.ignoreList} brandList={mockBrandList} />
       </Container>
     );
   }
