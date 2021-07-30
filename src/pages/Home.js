@@ -4,12 +4,13 @@ import { getProducts } from "utils/api";
 export default class Home extends Component {
   constructor() {
     super();
-    this.state({
+    this.state = ({
       products: [],
     });
   }
   componentDidMount() {
     getProducts().then((data) => {
+      data.forEach((o, i )=> o.id = i+ 1);
       this.setState({
         products: data,
       });
