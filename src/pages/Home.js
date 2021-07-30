@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { getProducts } from "utils/api";
 
 const Container = styled.div`
   width: 100%;
@@ -18,25 +17,13 @@ const Item = styled(Link)`
 `;
 
 export default class Home extends Component {
-  constructor() {
-    super();
-    this.state = {
-      products: [],
-    };
-  }
-  componentDidMount() {
-    getProducts().then((data) => {
-      data.forEach((o, i) => (o.id = i + 1));
-      this.setState({
-        products: data,
-      });
-    });
-  }
   render() {
+    const {products} = this.props;
+    
     return (
       <Container>
         <ItemList>
-          {this.state.products.map((item) => (
+          {products.map((item) => (
             <Item
               key={item.id}
               to={{
