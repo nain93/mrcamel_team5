@@ -22,12 +22,20 @@ export default class index extends Component {
     };
   }
 
+  handleFilter= (option) =>{
+    this.setState({
+      filterOptions: option
+    })
+
+    console.log(this.state);
+  }
+
   render() {
     const { productList, ignoreList, brandList, filterOptions } = this.state;
     const ignoreIdList = ignoreList.map((item) => item.id);
     return (
       <Container>
-        <RecentProductFilter brandList={brandList} filter={filterOptions} />
+        <RecentProductFilter handleFilter={this.handleFilter} brandList={brandList} filter={filterOptions} />
         <ProductListContainer>
           {productList
             .filter((item) => {
