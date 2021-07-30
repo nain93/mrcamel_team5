@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import RecentProductList from 'Components/RecentProductList';
+import { getLocalStorageProducts, NO_INTERRESTED, WATCH } from 'utils/productStorageControl';
 import styled from 'styled-components';
-
-const getLocalStorge = (key) => {
-  return JSON.parse(localStorage.getItem(key));
-};
 
 const setLocalStorage = (key, input) => {
   localStorage.setItem(key, JSON.stringify(input));
@@ -31,22 +28,22 @@ export default class RecentList extends Component {
   constructor() {
     super();
     // NEED TO REMOVE ON MERGE
-    setLocalStorage('resentList', mockList);
-    setLocalStorage('ignoreList', mockList.slice(0, 3));
+    setLocalStorage(WATCH, mockList);
+    setLocalStorage(NO_INTERRESTED, mockList.slice(0, 3));
     // REMOVE
     this.state = {
-      resentList: getLocalStorge('resentList'),
-      ignoreList: getLocalStorge('ignoreList'),
+      watchList: getLocalStorageProducts(WATCH),
+      noInterestedList: getLocalStorageProducts(NO_INTERRESTED),
     };
   }
   componentDidMount() {
-    console.log(this.state.resentList);
-    console.log(this.state.ignoreList);
+    console.log(this.state.watchList);
+    console.log(this.state.noInterestedList);
   }
   render() {
     return (
       <Container>
-        <RecentProductList productList={this.state.resentList} ignoreList={this.state.ignoreList} brandList={mockBrandList} />
+        <RecentProductList productList={this.state.watchList} noInterestedList={this.state.noInterestedList} brandList={mockBrandList} />
       </Container>
     );
   }

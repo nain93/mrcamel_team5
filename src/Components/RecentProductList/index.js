@@ -9,14 +9,14 @@ const Container = styled.div``;
 export default class index extends Component {
   constructor(props) {
     super(props);
-    const { productList, ignoreList, brandList } = this.props;
+    const { productList, noInterestedList, brandList } = this.props;
     this.state = {
       productList: productList,
-      ignoreList: ignoreList,
+      noInterestedList: noInterestedList,
       brandList: brandList,
       filterOptions: {
         sort: 'NEWEST', // or LOWPRICE
-        ignore: true,
+        noInterested: true,
         brands: ['나이키'],
       },
     };
@@ -31,16 +31,16 @@ export default class index extends Component {
   }
 
   render() {
-    const { productList, ignoreList, brandList, filterOptions } = this.state;
-    const ignoreIdList = ignoreList.map((item) => item.id);
+    const { productList, noInterestedList, brandList, filterOptions } = this.state;
+    const noInterestedIdList = noInterestedList.map((item) => item.id);
     return (
       <Container>
         <RecentProductFilter handleFilter={this.handleFilter} brandList={brandList} filter={filterOptions} />
         <ProductListContainer>
           {productList
             .filter((item) => {
-              if (filterOptions.ignore) {
-                return !ignoreIdList.includes(item.id);
+              if (filterOptions.noInterested) {
+                return !noInterestedIdList.includes(item.id);
               }
               return true;
             })
