@@ -36,8 +36,9 @@ export default class Home extends Component {
     return (
       <Container>
         <ItemList>
-          {this.state.products.map((item, idx) => (
+          {this.state.products.map((item) => (
             <Item
+              key={item.id}
               to={{
                 pathname: `/product`,
                 state: {
@@ -46,7 +47,6 @@ export default class Home extends Component {
                   price: item.price,
                 },
               }}
-              key={idx}
             >
               <div>{item.title}</div>
               <div>{item.brand}</div>
