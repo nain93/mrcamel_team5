@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import {
   WATCH,
@@ -29,10 +28,6 @@ const ButtonWrap = styled.div`
 `;
 
 export default class Product extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const { location, history } = this.props;
     if (location.state === undefined) {
