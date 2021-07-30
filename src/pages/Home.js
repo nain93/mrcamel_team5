@@ -18,8 +18,8 @@ const Item = styled(Link)`
 
 export default class Home extends Component {
   render() {
-    const {products} = this.props;
-    
+    const { products } = this.props;
+
     return (
       <Container>
         <ItemList>
@@ -29,6 +29,7 @@ export default class Home extends Component {
               to={{
                 pathname: `/product`,
                 state: {
+                  id: item.id,
                   title: item.title,
                   brand: item.brand,
                   price: item.price,
