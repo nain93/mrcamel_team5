@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.nav`
-  width: 768px;
+  width: 765px;
   height: 50px;
   margin: 0 auto;
   position: fixed;

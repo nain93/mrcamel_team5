@@ -10,6 +10,11 @@ const GlobalStyles = createGlobalStyle`
     *{
         box-sizing:border-box
     }
+    body{
+        ::-webkit-scrollbar {
+        display: none;
+        }
+    }
 
 `;
 
