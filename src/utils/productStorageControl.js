@@ -85,7 +85,7 @@ export const getFormatDate = (date, format) => {
     const hh = formatdigit(date.getHours(), 2);
     const mi = formatdigit(date.getMinutes(), 2);
     const ss = formatdigit(date.getSeconds(), 2);
-  
+
     if (format.toUpperCase() === 'YYYY-MM-DD') {
       return `${yy}-${mm}-${dd}`;
     }
@@ -94,14 +94,8 @@ export const getFormatDate = (date, format) => {
     }
   };
 
-export const formatdigit = (number, digits) => {
-  const strNum = number.toString();
-  let zero = '';
-  
-  if (strNum.length < digits) {
-    for (let i = 0; i < digits - strNum.length; i++) zero += '0';
-  }
-
-  return zero + strNum;
+export const formatdigit = (number, len) => {
+  const str = number.toString()
+  return str.length >= len ? str : new Array(len-str.length+1).join('0')+ str;
 };
   
