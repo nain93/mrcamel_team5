@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ResentList from 'Components/ResentList'
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -7,6 +8,6 @@ const Container = styled.div`
 
 export default class RecentList extends Component {
   render() {
-    return <Container>RecentList</Container>;
+    return <Container><ResentList/></Container>;
   }
 }
