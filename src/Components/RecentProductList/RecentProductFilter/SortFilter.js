@@ -35,7 +35,7 @@ export default class SortFilter extends Component {
     });
   };
   setSortoptions = (value) => {
-    console.log(value);
+    this.props.handleSort(value);
   };
   componentDidMount() {
     document.addEventListener('click', this.handleClickOutside, true);
