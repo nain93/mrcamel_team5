@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import styled from "styled-components";
 
 const Container = styled.div`
   position: absolute;
@@ -13,7 +13,7 @@ const Container = styled.div`
 const SortSelector = styled.div`
   color: white;
   padding: 10px 7px 10px 7px;
-  &: hover{
+  &:hover {
     background-color: white;
     color: #4e4e4e;
   }
@@ -21,19 +21,19 @@ const SortSelector = styled.div`
 
 export default class Popup extends Component {
   selectSort = (e) => {
-    if (e.target.id === 'newest') {
-      this.props.setSortoptions('NEWEST');
+    if (e.target.id === "newest") {
+      this.props.handleFilter("sort", "NEWEST");
     } else {
-      this.props.setSortoptions('LOWPRICE');
+      this.props.handleFilter("sort", "LOWPRICE");
     }
   };
   render() {
     return (
       <Container>
-        <SortSelector id='newest' onClick={this.selectSort}>
+        <SortSelector id="newest" onClick={this.selectSort}>
           최근 본 상품
         </SortSelector>
-        <SortSelector id='lowprice' onClick={this.selectSort}>
+        <SortSelector id="lowprice" onClick={this.selectSort}>
           낮은 가격 순
         </SortSelector>
       </Container>
