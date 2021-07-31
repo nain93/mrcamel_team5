@@ -19,11 +19,17 @@ export default class SortFilter extends Component {
     };
   }
   togglePopup = () => {
-    this.setState({
-      isOpenPopup: !this.state.isOpenPopup,
-    });
-    console.log(this.state.isOpenPopup);
+    this.setState((state)=>({
+      ... state,
+      isOpenPopup: !state.isOpenPopup
+    }));
+    console.log(this.state);
   };
+  closePopup = () =>{
+    this.setState({
+      isOpenPopup: false
+    })
+  }
   setSortoptions =(value)=>{
     console.log(value);
   }
@@ -37,7 +43,7 @@ export default class SortFilter extends Component {
             <path d='M0 0h48v48h-48z' fill='none' />
           </svg>
         </Button>
-        {isOpenPopup && <Popup setSortoptions={this.setSortoptions} togglePopup={this.togglePopup}/>}
+        {isOpenPopup && <Popup setSortoptions={this.setSortoptions} closePopup={this.closePopup}/>}
       </Container>
     );
   }
