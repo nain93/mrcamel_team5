@@ -15,12 +15,13 @@
 ## Reference
 
 ```
+이가은: 상품 상세페이지(Product.js), 배포
+
+김건우: utils 함수, 필터 이벤트
+
+박제인: RecentList 페이지, RecentProductList 컴포넌트 상품 필터 로직 작성 및 SortFilter 컴포넌트 작성
 
 ```
-
-App.js
-
-이가은: 상품 상세페이지(Product.js), 배포
 
 구남규: Home 메인페이지(Home.js), css, 라우팅
 

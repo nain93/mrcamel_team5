@@ -53,7 +53,7 @@ export default class index extends Component {
             .filter((item) => filterOptions.brands.includes(item.brand))
             .sort((a, b) => {
               return filterOptions.sort === "NEWEST"
-                ? new Date(b.date) - new Date(a.date)
+                ? b.date - a.date
                 : a.price - b.price;
             })
             .map((item) => {
