@@ -13,11 +13,11 @@ export default class index extends Component {
     this.state = {
       productList: productList,
       noInterestedList: noInterestedList,
-      brandList: brandList,
+      brandList: brandList, //상품 브랜드 리스트
       filterOptions: {
         sort: "NEWEST", // or LOWPRICE
-        noInterested: true,
-        brands: ["나이키"],
+        noInterestedFilter: false, //  true 설정시 관심없음 상품 filter
+        brands: [], // 해당 state에 있는 브랜드 상품만 노출
       },
     };
   }
@@ -29,6 +29,7 @@ export default class index extends Component {
 
     console.log(this.state);
   };
+  
 
   render() {
     const { productList, noInterestedList, brandList, filterOptions } =
@@ -39,12 +40,12 @@ export default class index extends Component {
         <RecentProductFilter
           handleFilter={this.handleFilter}
           brandList={brandList}
-          filter={filterOptions}
+          filterOptions={filterOptions}
         />
         <ProductListContainer>
           {productList
             .filter((item) => {
-              if (filterOptions.noInterested) {
+              if (filterOptions.noInterestedFilter) {
                 return !noInterestedIdList.includes(item.id);
               }
               return true;

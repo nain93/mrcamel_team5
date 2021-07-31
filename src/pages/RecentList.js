@@ -3,9 +3,6 @@ import RecentProductList from 'Components/RecentProductList';
 import { getLocalStorageProducts, NO_INTERRESTED, WATCH } from 'utils/productStorageControl';
 import styled from 'styled-components';
 
-const setLocalStorage = (key, input) => {
-  localStorage.setItem(key, JSON.stringify(input));
-};
 
 const Container = styled.div`
   height: calc(100vh - 57px);
@@ -27,10 +24,6 @@ const mockList = [
 export default class RecentList extends Component {
   constructor() {
     super();
-    // NEED TO REMOVE ON MERGE
-    setLocalStorage(WATCH, mockList);
-    setLocalStorage(NO_INTERRESTED, mockList.slice(0, 3));
-    // REMOVE
     this.state = {
       watchList: getLocalStorageProducts(WATCH),
       noInterestedList: getLocalStorageProducts(NO_INTERRESTED),

@@ -7,10 +7,9 @@ const Container = styled.div``;
 
 export default class index extends Component {
   handleCheckbox = (option) => {
-    const { handleFilter, filter } = this.props;
-    let changedFilter = filter;
+    const { handleFilter, filterOptions } = this.props;
+    let changedFilter = filterOptions;
     changedFilter.brands = option;
-
     handleFilter(changedFilter);
   };
   render() {
