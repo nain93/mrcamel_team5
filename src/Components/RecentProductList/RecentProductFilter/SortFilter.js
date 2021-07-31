@@ -50,7 +50,7 @@ export default class SortFilter extends Component {
     }
   };
   render() {
-    const { isOpenPopup, selected } = this.state;
+    const { isOpenPopup } = this.state;
     return (
       <Container ref={this.wrapper}>
         <Button

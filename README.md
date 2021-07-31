@@ -21,9 +21,8 @@
 
 박제인: RecentList 페이지, RecentProductList 컴포넌트 상품 필터 로직 작성 및 SortFilter 컴포넌트 작성
 
-```
-
 구남규: Home 메인페이지(Home.js), css, 라우팅
+```
 
 ## Use
 
