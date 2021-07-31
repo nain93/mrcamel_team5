@@ -15,7 +15,7 @@
 ## Reference
 
 ```
-이가은: 상품 상세페이지(Product.js), 배포
+이가은: 상품 상세페이지(Product.js)
 
 김건우: utils 함수, 필터 이벤트
 

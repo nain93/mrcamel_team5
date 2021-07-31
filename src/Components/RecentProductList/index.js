@@ -39,8 +39,6 @@ export default class index extends Component {
       ? getFilterLocalStorageInterestedProducts(productList)
       : productList;
 
-    console.log("render", afterInterestedList, filterOptions);
-
     return (
       <Container>
         <RecentProductFilter
