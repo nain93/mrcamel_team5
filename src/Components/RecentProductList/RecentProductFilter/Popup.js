@@ -20,36 +20,16 @@ const SortSelector = styled.div`
 `;
 
 export default class Popup extends Component {
-  constructor(props) {
-    super(props);
-    this.wrapper = React.createRef();
-  }
   selectSort = (e) => {
-    console.log(e.target.id);
     if (e.target.id === 'newest') {
       this.props.setSortoptions('NEWST');
     } else {
       this.props.setSortoptions('LOWPRICE');
     }
   };
-  componentDidMount() {
-    document.addEventListener('click', this.handleClickOutside, true);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.handleClickOutside, true);
-  }
-
-  handleClickOutside = (event) => {
-    console.log(event.target);
-    console.log(this.wrapper);
-    if (this.wrapper && !this.wrapper.current.contains(event.target)) {
-      this.props.closePopup();
-    }
-  };
   render() {
     return (
-      <Container ref={this.wrapper}>
+      <Container>
         <SortSelector id='newest' onClick={this.selectSort}>
           최근 본 상품
         </SortSelector>
