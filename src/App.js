@@ -18,12 +18,14 @@ const GlobalContainer = styled.div`
 
 export default class App extends Component {
   state = {
-    products: product,
+    products: [],
   };
 
-  // componentDidMount() {
-  //   getProducts().then((products) => this.setState({ products }));
-  // }
+  componentDidMount() {
+    // getProducts().then((products) => this.setState({ products }));
+    const products = product.map((el, index) => ({ ...el, id: index }));
+    this.setState({ products });
+  }
 
   render() {
     const { products } = this.state;
