@@ -8,9 +8,7 @@ import {
 } from "utils/productStorageControl";
 import styled from "styled-components";
 
-const Container = styled.div`
-  height: calc(100vh - 57px);
-`;
+const Container = styled.div``;
 
 export default class RecentList extends Component {
   render() {

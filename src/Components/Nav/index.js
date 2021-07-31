@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Container = styled.nav`
   width: 765px;
-  height: 50px;
+  height: 55px;
   margin: 0 auto;
   position: fixed;
   top: 0;

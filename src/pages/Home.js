@@ -12,8 +12,16 @@ const ItemList = styled.section`
 `;
 
 const Item = styled(Link)`
-  border: 1px solid white;
+  border-top: 1px solid black;
+  padding: 5px 0;
   text-align: center;
+  > div:first-child {
+    font-weight: 700;
+    font-size: 15px;
+  }
+  > div {
+    margin: 10px 0;
+  }
 `;
 
 export default class Home extends Component {
@@ -37,8 +45,8 @@ export default class Home extends Component {
               }}
             >
               <div>{item.title}</div>
-              <div>{item.brand}</div>
-              <div>{item.price}</div>
+              <div>브랜드: {item.brand}</div>
+              <div>가격: {item.price}</div>
             </Item>
           ))}
         </ItemList>

@@ -24,57 +24,49 @@ export default class CheckBoxFilter extends Component {
     });
     this.state = {
       checkList: customList,
-      allCheck: false,
-      pickName: [],
     };
   }
 
+  toggleAllCheckedBrand = () => {
+    const totalBrands = this.props.brandList;
+    this.props.handleFilter("brands", this.allCheckBrand() ? [] : totalBrands);
+  };
+
+  toggleCheckedBrand = (e) => {
+    const { name } = e.target;
+    const brands = this.props.filterOptions.brands;
+    const resultBrands = this.checkedBrand(name)
+      ? brands.filter((el) => el !== name)
+      : brands.concat(name);
+    this.props.handleFilter("brands", resultBrands);
+  };
+
+  toggleNoInterest = (e) => {
+    const { name } = e.target;
+    const value = !this.props.filterOptions.noInterestedFilter;
+    this.props.handleFilter(name, value);
+  };
+
+  allCheckBrand = () => {
+    const totalBrands = this.props.brandList.length;
+    const brands = this.props.filterOptions.brands.length;
+    return totalBrands === brands;
+  };
+
+  checkedBrand = (name) => {
+    return this.props.filterOptions.brands.includes(name);
+  };
+
   render() {
-    const { checkList, allCheck, pickName } = this.state;
-
-    const toggleAllCheck = () => {
-      this.setState({
-        allCheck: !allCheck,
-      });
-    };
-
-    const toggleNoInterest = () => {
-      this.props.handleFilter({
-        noInterestedFilter: !this.props.noInterestedFilter,
-      });
-    };
-
-    const toggleBrandCheck = ({ target }) => {
-      const prevCheckList = checkList;
-      let newCheckList;
-      if (target.value) {
-        newCheckList = prevCheckList.map((item) => {
-          if (item.name === target.name) {
-            item.ischecked = !item.ischecked;
-            pickName.push(item.name);
-            this.props.handleFilter({
-              ...this.props.filterOptions,
-              brands: [...pickName, target.name],
-            });
-          }
-          return item;
-        });
-      } else if (!target.value) {
-        this.props.handleFilter({ ...this.props.filterOptions, brands: [] });
-      }
-
-      this.setState({
-        checkList: [...newCheckList],
-      });
-    };
+    const { checkList } = this.state;
 
     return (
       <Container>
         <CheckBoxContainer>
           <input
             type="checkbox"
-            value={allCheck}
-            onChange={(target) => toggleAllCheck(target)}
+            checked={this.allCheckBrand()}
+            onChange={this.toggleAllCheckedBrand}
           />
           <p>all</p>
         </CheckBoxContainer>
@@ -83,22 +75,20 @@ export default class CheckBoxFilter extends Component {
             <CheckBoxContainer key={idx}>
               <input
                 type="checkbox"
-                value={item.ischecked}
+                checked={this.checkedBrand(item.name)}
                 name={item.name}
-                onChange={(e) => {
-                  toggleBrandCheck(e);
-                }}
+                onChange={this.toggleCheckedBrand}
               />
               <p>{item.name}</p>
             </CheckBoxContainer>
           );
         })}
         <CheckBoxContainer>
-          {console.log(checkList, "newCheckList")}
           <input
             type="checkbox"
-            value={this.props.noInterestedFilter}
-            onChange={toggleNoInterest}
+            name="noInterestedFilter"
+            checked={this.props.filterOptions.noInterestedFilter}
+            onChange={this.toggleNoInterest}
           />
           <p>관심 없는 상품 숨기기</p>
         </CheckBoxContainer>
