@@ -3,10 +3,10 @@ import Home from "pages/Home";
 import Product from "pages/Product";
 import RecentList from "pages/RecentList";
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import GlobalStyles from "styles/GlobalStyles";
-import { getProducts } from "utils/api/api";
+import product from "assets/product.json";
 
 const GlobalContainer = styled.div`
   max-width: 768px;
@@ -18,12 +18,12 @@ const GlobalContainer = styled.div`
 
 export default class App extends Component {
   state = {
-    products: [],
+    products: product,
   };
 
-  componentDidMount() {
-    getProducts().then((products) => this.setState({ products }));
-  }
+  // componentDidMount() {
+  //   getProducts().then((products) => this.setState({ products }));
+  // }
 
   render() {
     const { products } = this.state;
