@@ -16,10 +16,12 @@
 ## Reference
 
 ```
- 
+
 ```
 
 App.js
+
+이가은: 상품 상세페이지(Product.js), 배포
 
 ## Use
 

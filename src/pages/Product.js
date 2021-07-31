@@ -48,22 +48,35 @@ export default class Product extends Component {
       products,
       location.state
     );
-    randomProducts.sort(() => Math.random() - 0.5);
-    return randomProducts[0];
+    if (randomProducts.length) {
+      randomProducts.sort(() => Math.random() - 0.5);
+      return randomProducts[0];
+    } else {
+      return null;
+    }
   };
+
+  componentDidUpdate() {
+    const { location } = this.props;
+    setLocalStorageProducts(WATCH, location.state);
+  }
 
   randomRedirect = () => {
     const nextProduct = this.getRandomItem();
-    const { history } = this.props;
-    history.push({
-      pathname: "/product",
-      state: {
-        id: nextProduct.id,
-        title: nextProduct.title,
-        brand: nextProduct.brand,
-        price: nextProduct.price,
-      },
-    });
+    if (nextProduct) {
+      const { history } = this.props;
+      history.push({
+        pathname: "/product",
+        state: {
+          id: nextProduct.id,
+          title: nextProduct.title,
+          brand: nextProduct.brand,
+          price: nextProduct.price,
+        },
+      });
+    } else {
+      alert("모든 상품에 관심없음을 표시하였습니다.");
+    }
   };
 
   render() {
