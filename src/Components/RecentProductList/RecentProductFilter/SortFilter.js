@@ -4,6 +4,7 @@ import Popup from "./Popup";
 
 const Container = styled.div``;
 const Button = styled.button`
+  background-color: inherit;
   border: none;
   svg {
     width: 25px;
@@ -17,7 +18,7 @@ export default class SortFilter extends Component {
     this.wrapper = React.createRef();
     this.state = {
       selected: props.seleted,
-      isOpenPopup: false,
+      isOpenPopup: true,
     };
   }
   togglePopup = (isOpen) => {
