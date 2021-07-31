@@ -25,17 +25,48 @@ export default class CheckBoxFilter extends Component {
     this.state = {
       checkList: customList,
       allCheck: false,
+      ischecked: false,
     };
   }
-  componentDidMount() {}
+
   render() {
-    const toggleAllCheck = ({ target }) => {
+    const { checkList, allCheck, ischecked } = this.state;
+
+    const toggleAllCheck = () => {
       this.setState({
-        allCheck: !this.state.allCheck,
+        allCheck: !allCheck,
       });
     };
 
-    const { checkList, allCheck } = this.state;
+    const toggleNoInterest = () => {
+      this.props.handleFilter({
+        noInterestedFilter: !this.props.noInterestedFilter,
+      });
+    };
+
+    const toggleBrandCheck = ({ target }) => {
+      const prevCheckList = checkList;
+      const newCheckList = prevCheckList.map((item) => {
+        if (item.name === target.name) {
+          item.value = target.value;
+        }
+        return item;
+      });
+      this.setState({
+        checkList: newCheckList,
+      });
+
+      if (target.value) {
+        this.props.handleFilter({
+          brands: [target.name],
+        });
+        return;
+      }
+      this.props.handleFilter({
+        brands: [""],
+      });
+    };
+
     return (
       <Container>
         <CheckBoxContainer>
@@ -51,10 +82,11 @@ export default class CheckBoxFilter extends Component {
             <CheckBoxContainer key={idx}>
               <input
                 type="checkbox"
-                value={item.ischecked}
+                value={ischecked}
                 name={item.name}
-                // onChange={(target) => this.props.toggleBrandCheck(target)}
-                onClick={(e) => console.log(e, "onClick")}
+                onChange={(e) => {
+                  toggleBrandCheck(e);
+                }}
               />
               <p>{item.name}</p>
             </CheckBoxContainer>
@@ -63,7 +95,8 @@ export default class CheckBoxFilter extends Component {
         <CheckBoxContainer>
           <input
             type="checkbox"
-            onChange={(target) => this.props.toggleNoInterest(target)}
+            value={this.props.noInterestedFilter}
+            onChange={toggleNoInterest}
           />
           <p>관심 없는 상품 숨기기</p>
         </CheckBoxContainer>

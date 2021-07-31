@@ -19,8 +19,8 @@ export default class index extends Component {
           handleCheckbox={this.handleCheckbox}
           brandList={this.props.brandList}
           productList={this.props.productList}
-          toggleNoInterest={this.props.toggleNoInterest}
-          // toggleBrandCheck={this.props.toggleBrandCheck}
+          handleFilter={this.props.handleFilter}
+          noInterestedFilter={this.props.noInterestedFilter}
         />
         <SortFilter />
       </Container>

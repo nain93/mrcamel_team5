@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { getFilterLocalStorageInterestedProducts } from "utils/productStorageControl";
 import RecentProduct from "./RecentProduct";
 import RecentProductFilter from "./RecentProductFilter";
 
@@ -23,19 +22,13 @@ export default class index extends Component {
     };
   }
 
-  handleFilter = (option) => {
-    this.setState({
-      filterOptions: option,
-    });
-
-    console.log(this.state);
-  };
-
-  componentDidMount() {
-    console.log(this.state.noInterestedList, "noInterestedList");
-  }
-
   render() {
+    const handleFilter = (option) => {
+      this.setState({
+        filterOptions: option,
+      });
+    };
+
     const {
       productList,
       noInterestedList,
@@ -43,37 +36,15 @@ export default class index extends Component {
       filterOptions,
       filterOptions: { noInterestedFilter },
     } = this.state;
-    const toggleNoInterest = ({ target }) => {
-      this.setState({
-        filterOptions: {
-          noInterestedFilter: !noInterestedFilter,
-        },
-      });
-    };
-    // const toggleBrandCheck = ({ target }, e) => {
-    //   productList.map((item) => {
-    //     if (item.brand === target.name) {
-    //       this.setState({
-    //         brandFilterCheck: !brandFilterCheck,
-    //         brandFilterItem: [
-    //           ...brandFilterItem,
-    //           ...productList.filter((item) => {
-    //             return item.brand === target.name;
-    //           }),
-    //         ],
-    //       });
-    //     }
-    //   });
-    // };
 
     const noInterestedIdList = noInterestedList.map((item) => item.id);
     return (
       <Container>
         <RecentProductFilter
-          handleFilter={this.handleFilter}
+          handleFilter={handleFilter}
           brandList={brandList}
           filterOptions={filterOptions}
-          toggleNoInterest={toggleNoInterest}
+          noInterestedFilter={noInterestedFilter}
         />
         <ProductListContainer>
           {productList
