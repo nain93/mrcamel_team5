@@ -22,7 +22,7 @@ const SortSelector = styled.div`
 export default class Popup extends Component {
   selectSort = (e) => {
     if (e.target.id === 'newest') {
-      this.props.setSortoptions('NEWST');
+      this.props.setSortoptions('NEWEST');
     } else {
       this.props.setSortoptions('LOWPRICE');
     }
