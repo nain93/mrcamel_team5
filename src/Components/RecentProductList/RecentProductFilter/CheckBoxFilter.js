@@ -25,12 +25,12 @@ export default class CheckBoxFilter extends Component {
     this.state = {
       checkList: customList,
       allCheck: false,
-      ischecked: false,
+      pickName: [],
     };
   }
 
   render() {
-    const { checkList, allCheck, ischecked } = this.state;
+    const { checkList, allCheck, pickName } = this.state;
 
     const toggleAllCheck = () => {
       this.setState({
@@ -46,24 +46,25 @@ export default class CheckBoxFilter extends Component {
 
     const toggleBrandCheck = ({ target }) => {
       const prevCheckList = checkList;
-      const newCheckList = prevCheckList.map((item) => {
-        if (item.name === target.name) {
-          item.value = target.value;
-        }
-        return item;
-      });
-      this.setState({
-        checkList: newCheckList,
-      });
-
+      let newCheckList;
       if (target.value) {
-        this.props.handleFilter({
-          brands: [target.name],
+        newCheckList = prevCheckList.map((item) => {
+          if (item.name === target.name) {
+            item.ischecked = !item.ischecked;
+            pickName.push(item.name);
+            this.props.handleFilter({
+              ...this.props.filterOptions,
+              brands: [...pickName, target.name],
+            });
+          }
+          return item;
         });
-        return;
+      } else if (!target.value) {
+        this.props.handleFilter({ ...this.props.filterOptions, brands: [] });
       }
-      this.props.handleFilter({
-        brands: [""],
+
+      this.setState({
+        checkList: [...newCheckList],
       });
     };
 
@@ -82,7 +83,7 @@ export default class CheckBoxFilter extends Component {
             <CheckBoxContainer key={idx}>
               <input
                 type="checkbox"
-                value={ischecked}
+                value={item.ischecked}
                 name={item.name}
                 onChange={(e) => {
                   toggleBrandCheck(e);
@@ -93,6 +94,7 @@ export default class CheckBoxFilter extends Component {
           );
         })}
         <CheckBoxContainer>
+          {console.log(checkList, "newCheckList")}
           <input
             type="checkbox"
             value={this.props.noInterestedFilter}

@@ -14,13 +14,13 @@ export default class index extends Component {
   };
 
   handleSort = (option) => {
-    const {handleFilter, filterOptions}= this.props;
-    console.log(option, 'handleSort');
+    const { handleFilter, filterOptions } = this.props;
+    console.log(option, "handleSort");
     handleFilter({
       ...filterOptions,
-      sort: option
-    })
-  }
+      sort: option,
+    });
+  };
   render() {
     return (
       <Container>
@@ -30,8 +30,9 @@ export default class index extends Component {
           productList={this.props.productList}
           handleFilter={this.props.handleFilter}
           noInterestedFilter={this.props.noInterestedFilter}
+          filterOptions={this.props.filterOptions}
         />
-        <SortFilter handleSort={this.handleSort}/>
+        <SortFilter handleSort={this.handleSort} />
       </Container>
     );
   }
