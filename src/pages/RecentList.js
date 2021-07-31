@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import RecentProductList from "Components/RecentProductList";
 import {
-  getFilterBrandLocalStroage,
+  getFilterLocalStroage,
   getLocalStorageProducts,
   NO_INTERRESTED,
   WATCH,
@@ -19,7 +19,7 @@ export default class RecentList extends Component {
         <RecentProductList
           productList={getLocalStorageProducts(WATCH)}
           noInterestedList={getLocalStorageProducts(NO_INTERRESTED)}
-          brandList={getFilterBrandLocalStroage(WATCH)}
+          brandList={getFilterLocalStroage(WATCH, "brand")}
         />
       </Container>
     );

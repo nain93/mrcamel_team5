@@ -7,10 +7,9 @@ const Container = styled.div``;
 
 export default class index extends Component {
   handleCheckbox = (option) => {
-    const { handleFilter, filter } = this.props;
-    let changedFilter = filter;
+    const { handleFilter, filterOptions } = this.props;
+    let changedFilter = filterOptions;
     changedFilter.brands = option;
-
     handleFilter(changedFilter);
   };
   render() {
@@ -21,7 +20,7 @@ export default class index extends Component {
           brandList={this.props.brandList}
           productList={this.props.productList}
           toggleNoInterest={this.props.toggleNoInterest}
-          toggleBrandCheck={this.props.toggleBrandCheck}
+          // toggleBrandCheck={this.props.toggleBrandCheck}
         />
         <SortFilter />
       </Container>

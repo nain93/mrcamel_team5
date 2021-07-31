@@ -53,7 +53,7 @@ export default class CheckBoxFilter extends Component {
                 type="checkbox"
                 value={item.ischecked}
                 name={item.name}
-                onChange={(target) => this.props.toggleBrandCheck(target)}
+                // onChange={(target) => this.props.toggleBrandCheck(target)}
                 onClick={(e) => console.log(e, "onClick")}
               />
               <p>{item.name}</p>

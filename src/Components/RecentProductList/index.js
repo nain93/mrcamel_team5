@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { getFilterLocalStorageInterestedProducts } from "utils/productStorageControl";
 import RecentProduct from "./RecentProduct";
 import RecentProductFilter from "./RecentProductFilter";
 
@@ -15,9 +16,9 @@ export default class index extends Component {
       noInterestedList: noInterestedList,
       brandList: brandList, //상품 브랜드 리스트
       filterOptions: {
-        sort: "LOWPRICE", // or LOWPRICE
+        sort: "NEWEST", // or LOWPRICE
         noInterestedFilter: false, //  true 설정시 관심없음 상품 filter
-        brands: ["나이키"], // 해당 state에 있는 브랜드 상품만 노출
+        brands: [], // 해당 state에 있는 브랜드 상품만 노출
       },
     };
   }
@@ -30,9 +31,41 @@ export default class index extends Component {
     console.log(this.state);
   };
 
+  componentDidMount() {
+    console.log(this.state.noInterestedList, "noInterestedList");
+  }
+
   render() {
-    const { productList, noInterestedList, brandList, filterOptions } =
-      this.state;
+    const {
+      productList,
+      noInterestedList,
+      brandList,
+      filterOptions,
+      filterOptions: { noInterestedFilter },
+    } = this.state;
+    const toggleNoInterest = ({ target }) => {
+      this.setState({
+        filterOptions: {
+          noInterestedFilter: !noInterestedFilter,
+        },
+      });
+    };
+    // const toggleBrandCheck = ({ target }, e) => {
+    //   productList.map((item) => {
+    //     if (item.brand === target.name) {
+    //       this.setState({
+    //         brandFilterCheck: !brandFilterCheck,
+    //         brandFilterItem: [
+    //           ...brandFilterItem,
+    //           ...productList.filter((item) => {
+    //             return item.brand === target.name;
+    //           }),
+    //         ],
+    //       });
+    //     }
+    //   });
+    // };
+
     const noInterestedIdList = noInterestedList.map((item) => item.id);
     return (
       <Container>
@@ -40,6 +73,7 @@ export default class index extends Component {
           handleFilter={this.handleFilter}
           brandList={brandList}
           filterOptions={filterOptions}
+          toggleNoInterest={toggleNoInterest}
         />
         <ProductListContainer>
           {productList
@@ -50,7 +84,7 @@ export default class index extends Component {
               return true;
             })
             .filter((item) => {
-              if (filterOptions.brands.length) {
+              if (filterOptions.brands?.length) {
                 return filterOptions.brands.includes(item.brand);
               }
               return true;
