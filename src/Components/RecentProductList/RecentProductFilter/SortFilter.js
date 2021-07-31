@@ -22,9 +22,6 @@ export default class SortFilter extends Component {
     };
   }
   togglePopup = (isOpen) => {
-    if (isOpen) {
-      console.log("!!");
-    }
     this.setState((state) => ({
       ...state,
       isOpenPopup: !state.isOpenPopup,
