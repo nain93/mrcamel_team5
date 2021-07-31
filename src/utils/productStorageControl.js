@@ -72,7 +72,12 @@ export const getFilterLocalStorageInterestedProducts = (products, product) => {
 };
 
 export const getFilterBrandLocalStroage = (watch) => {
-  return getLocalStorageProducts(watch).map((el) => el.brand);
+  const watchBrandArr = getLocalStorageProducts(watch).map((el) => el.brand);
+
+  const brand = {};
+  for (const brandName of watchBrandArr) brand[brandName] = "";
+
+  return Object.keys(brand);
 };
 
 export const resetLocalStorageProducts = (watch, date) => {
