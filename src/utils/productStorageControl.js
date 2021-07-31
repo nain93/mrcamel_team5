@@ -92,12 +92,13 @@ export const getFormatDate = (date, format) => {
   const hh = formatdigit(date.getHours(), 2);
   const mi = formatdigit(date.getMinutes(), 2);
   const ss = formatdigit(date.getSeconds(), 2);
+  const miss = formatdigit(date.getMilliseconds(), 3);
 
   if (format.toUpperCase() === "YYYY-MM-DD") {
     return `${yy}-${mm}-${dd}`;
   }
   if (format.toUpperCase() === "YYYYMMDDHHMISS") {
-    return `${yy}${mm}${dd}${hh}${mi}${ss}`;
+    return `${yy}${mm}${dd}${hh}${mi}${ss}${miss}`;
   }
 };
 
