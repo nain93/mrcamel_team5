@@ -63,7 +63,7 @@ export default class index extends Component {
             .sort((a, b) => {
               return filterOptions.sort === "NEWEST"
                 ? new Date(b.date) - new Date(a.date)
-                : b.price - a.price;
+                : a.price - b.price;
             })
             .map((item) => {
               return <RecentProduct item={item} key={item.id} />;
