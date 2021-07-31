@@ -1,6 +1,6 @@
 export const NO_INTERRESTED = "no_Interested";
 export const WATCH = "watch";
-export const RESET_DATE = new Date();
+export let RESET_DATE = new Date();
 /*
  - setLocalStorageProducts
  watch 는 위에 상수로 제공되는 WATCH , NO_INTERRESTED 를 인자로 넘겨주시면 됩니다.
@@ -12,6 +12,7 @@ export const setLocalStorageProducts = (watch, product) => {
   const storage = Array.isArray(initStorage) ? initStorage : [];
   const findProduct = storage.some((el) => el.id === product.id);
 
+  RESET_DATE = new Date();
   const date = getFormatDate(RESET_DATE, "YYYYMMDDHHMISS");
   const data = { ...product, date };
 
