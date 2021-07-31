@@ -31,3 +31,7 @@
 - react-router-dom
 - styled-components
 - styled-reset
+
+## Deploy Link
+
+https://agitated-sammet-9da466.netlify.app/#/recentList
