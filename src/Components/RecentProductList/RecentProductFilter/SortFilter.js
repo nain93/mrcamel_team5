@@ -4,7 +4,8 @@ import Popup from './Popup';
 
 const Container = styled.div``;
 const Button = styled.button`
-  svg{
+  border: none;
+  svg {
     width: 25px;
     height: 25px;
   }
@@ -19,20 +20,20 @@ export default class SortFilter extends Component {
     };
   }
   togglePopup = () => {
-    this.setState((state)=>({
-      ... state,
-      isOpenPopup: !state.isOpenPopup
+    this.setState((state) => ({
+      ...state,
+      isOpenPopup: !state.isOpenPopup,
     }));
     console.log(this.state);
   };
-  closePopup = () =>{
+  closePopup = () => {
     this.setState({
-      isOpenPopup: false
-    })
-  }
-  setSortoptions =(value)=>{
+      isOpenPopup: false,
+    });
+  };
+  setSortoptions = (value) => {
     console.log(value);
-  }
+  };
   render() {
     const { isOpenPopup, selected } = this.state;
     return (
@@ -43,7 +44,7 @@ export default class SortFilter extends Component {
             <path d='M0 0h48v48h-48z' fill='none' />
           </svg>
         </Button>
-        {isOpenPopup && <Popup setSortoptions={this.setSortoptions} closePopup={this.closePopup}/>}
+        {isOpenPopup && <Popup setSortoptions={this.setSortoptions} closePopup={this.closePopup} />}
       </Container>
     );
   }
